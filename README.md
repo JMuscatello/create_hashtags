@@ -1,11 +1,9 @@
-# create_hashtags
-Text extraction script in python. This was written as part of an interview process for a company specialising in NLP.   
 CREATE_HASHTAGS.PY
 ==================
 
-Python 2.7 program to calculate the n most frequent words appearing in
-a given set of text documents and outputs the words, containing documents,
-and sentences containing those words to a html table.
+Python 2.7 program to calculate the n most frequent words appearing in 
+a given set of text documents and outputs the words, containing documents, 
+and sentences containing those words to a html table. 
 
 OPTIONS:
 
@@ -15,40 +13,36 @@ OPTIONS:
  -n <number of words>
     top n words to output
 
- --html
+ --html 
     flag to turn on html output - currently only outputs in html
 
 OUTPUT FILES;
 
  most_common_words.html
-    HTML table of most common words, containing documents and sentences
+    HTML table of most common words, containing document name and sentences
 
 EXAMPLE:
 
 $ python2.7 create_hashtags.py -f doc1.txt doc2.txt -n 5 --html
 
 Calculates the top 5 words in doc1.txt and doc2.txt and outputs the words,
-containing document names and sentences containing the words to the file
+containing document names and sentences containing the words to the file 
 "most_common_words.html"
 
 ABOUT THE CODE:
 
-The code predominantly uses the "re" regular expressions package to find
-the most common words and subsequently locate these strings as words (using
-the "\b" regex option) and extract the containing sentences (for which the
-sentence structure must be prescibed). These strings are then processed and
-output to an html table.
+This revised verison of the code uses the NLTK library to first tokenize
+each document into sentences. This is more general than using regex 
+to do this as it uses a pretrained tokenizer model to extract sentences.
+The word_tokenize routine (which uses regex) is then used to split
+the sentence string into words. 
+    
+The words are then counted and matched. In this sense this version of the 
+code can be used more generally for other text sources so long as sentences
+can be idientified with the tokenizer.
 
+TO DO;
 
-In this method regex presents some limitations as in this case standard
-punctuation is used as a delimiter. Another option would be to use the NLTK
-package suite to identify sentence structures and tokens in the text, and use
-methods which may be applicable to other text based data, i.e. not limited
-to transcripts or prose with regular punctuation.
-
-I made an attempt to use tokenize_sent to extract sentences then search for the
-given word string but I ran into encoding problems that I didn't have time
-to fix.
-
+Contractions could be handled in a tidier manner
 
 --Jordan Muscatello (jordan.muscatello@gmail.com)
